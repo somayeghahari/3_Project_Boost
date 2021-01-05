@@ -443,8 +443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8d59a6044c94c559ecced5b4be7606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rcsThrust: 70
-  mainThrust: 3
+  rcsThrust: 120
+  mainThrust: 500
+  levelLoadDelay: 2
   mainEngine: {fileID: 8300000, guid: 935c98a77454747aa952bbe94d355838, type: 3}
   success: {fileID: 8300000, guid: 398a5674b9f9c4b4c89d4a6a091bdc56, type: 3}
   death: {fileID: 8300000, guid: 0213a5de06ed44a7f90785bc601380bd, type: 3}
@@ -601,6 +602,21 @@ PrefabInstance:
     - target: {fileID: 4100699973242056, guid: 62198a3a5dbb64a4f9e1618929224faa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198631066050499358, guid: 62198a3a5dbb64a4f9e1618929224faa,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.85937554
+      objectReference: {fileID: 0}
+    - target: {fileID: 198631066050499358, guid: 62198a3a5dbb64a4f9e1618929224faa,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8497241
+      objectReference: {fileID: 0}
+    - target: {fileID: 198631066050499358, guid: 62198a3a5dbb64a4f9e1618929224faa,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8962264
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62198a3a5dbb64a4f9e1618929224faa, type: 3}
