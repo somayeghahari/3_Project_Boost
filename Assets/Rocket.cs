@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
-    [SerializeField] float rcsThrust = 50f;
-    [SerializeField] float mainThrust = 5f;
+    [SerializeField] float rcsThrust = 60f;
+    [SerializeField] float mainThrust = 300f;
+    [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip death;
@@ -57,7 +58,7 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(success);
         successParticles.Play();
-        Invoke("LoadNextLevel", 1f);
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     private void StartDeathSquence()
@@ -65,7 +66,7 @@ public class Rocket : MonoBehaviour
         state = State.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(death);
-        Invoke("LoadFirstLevel", 1f);
+        Invoke("LoadFirstLevel", levelLoadDelay);
     }
 
     private void LoadFirstLevel()
@@ -75,7 +76,11 @@ public class Rocket : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene(1);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextScene = currentSceneIndex + 1;
+        if (nextScene == SceneManager.sceneCountInBuildSettings)
+            nextScene = 0;
+        SceneManager.LoadScene(nextScene);
     }
 
     private void RespondToRotateInput()
@@ -110,7 +115,7 @@ public class Rocket : MonoBehaviour
 
     private void ApplyThrust()
     {
-        rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+        rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(mainEngine);
